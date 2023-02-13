@@ -1,0 +1,42 @@
+<%- include('../includes/head.ejs') %>
+<link rel="stylesheet" href="/css/addBook.css">
+    </head>
+
+    <body>
+        <%- include('../includes/navigation.ejs') %>
+        <main>
+            <% if(!role){ %>
+                <section class="role__section">
+                    <p>Are you new! Sign up as</p>
+                    <div class="role__div">
+                        <form action="/roles" method="post" class="role__form ">
+                            <select name="roles" id="roles" required>
+                                <option >Pick a Role</option>
+                                <option value="basic"> </i> Basic</option>
+                                <option value="vendor">Vendor</option>
+                                <option value="Admin"> Admin</option>
+                            </select>
+                            <button type="submit">Signup</button>
+                            
+                        </form>
+                    </div>
+                </section>
+                
+            <% } else { %>
+                <form method="POST" class="addBook searchForm" action="/signup">
+                    <label for="email">Email</label>
+                    <input type="text" id="email" name="email">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword">
+                    <input type="hidden" name="role"  value="<%= role %>">
+                    <button class="btn" type="submit">Sign up</button>
+                </form
+            <% } %> 
+            
+
+        </main>
+        
+
+<%- include('../includes/end.ejs') %>

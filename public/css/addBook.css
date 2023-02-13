@@ -1,0 +1,124 @@
+*, *::before, *::after{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+html {
+    font-size: 62.5%;
+}
+
+main {
+    width: 100%;
+    background: antiquewhite;
+    padding: 1.5rem;
+    height: 100vh;
+    margin-top: .5rem;
+}
+
+main .addBook {
+    width: 30%;
+    display: block;
+    margin: 0 auto;
+    font-size: 1.9rem;
+
+
+}
+
+.addBook label {
+    display: block;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: rgb(30, 76, 76);
+}
+
+.addBook input,
+.addBook textarea {
+    padding: 1rem;
+    margin: .3rem auto;
+    border-radius: .3rem;
+    width: 100%;
+    border: .1rem solid rgb(94, 79, 78);
+}
+
+.addBook input:focus,
+.addBook textarea :focus {
+    border-color: rgb(139, 82, 76);
+}
+
+.addBook button {
+    margin: 0 auto;
+    border-radius: .3rem;
+    text-transform: uppercase;
+    color: white;
+    background: rgb(24, 26, 183);
+    padding: 1rem 2rem;
+    border-style: none;
+    transition: all 400ms;
+}
+
+.addBook button:hover {
+    cursor: pointer;
+    transform: translateY(3px);
+}
+
+main .searchForm {
+    margin-top: 3rem;
+}
+
+.role__section {
+    display: block;
+    /* margin: 0 auto; */
+    margin-top: 3rem;
+
+}
+.role__section p {
+    font-size: 2rem;
+    color: rebeccapurple;
+    font-weight: bold;
+    text-align: center;
+    line-height: 1.5rem;
+    text-transform: capitalize;
+    margin-bottom: 2rem;
+}
+
+.role__div{
+    margin: 1rem auto;
+    box-shadow: 1px 0px 3px grey;
+    padding: 1rem;
+    width: 30%;
+}
+.role__form{
+    display: block;
+    width: 100%;
+    text-align: center;
+}
+.role__form select{
+    width: 100%;
+    padding: .5rem;
+    font-size: 1.7rem;
+    border: .6rem solid transparent;
+    border-radius: .5rem;
+    outline: none;
+}
+.role__form select:hover{
+    outline: none;
+}
+
+.role__form option{
+    border: .4rem transparent;
+    margin: .5rem 0;
+}
+.role__form button{
+    margin-top: 1rem;
+    font-size: 1.5rem;
+    padding: 1rem;
+    border-radius: .6rem;
+    color: whitesmoke;
+    background: blue;
+    border: none;
+    transition: transform 2ms ease-in;
+}
+
+.role__form button:hover{
+    transform: translateY(-3px);
+}

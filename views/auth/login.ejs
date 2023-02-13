@@ -1,0 +1,22 @@
+<%- include('../includes/head.ejs') %>
+<link rel="stylesheet" href="/css/addBook.css">
+    </head>
+
+    <body>
+        <%- include('../includes/navigation.ejs') %>
+        <main>
+            
+            <form method="POST" class="addBook searchForm" action="/login">
+                <label for="email">Email</label>
+                <input type="text" id="email" name="email">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password">
+                <input type="hidden" name="role" id="role" value="basic">
+                
+                
+                <button class="btn" type="submit">Login</button>
+            </form
+        </main>
+        
+
+<%- include('../includes/end.ejs') %>
