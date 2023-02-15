@@ -9,12 +9,22 @@ const MongoDBStore = require("connect-mongodb-session")(session);
 require("dotenv").config();
 
 const app = express();
-
+const store = new MongoDBStore({
+  uri: process.env.MONGO_URI,
+  collection: 'session'
+})
 
 app.set("view engine", "ejs");
 app.set("views", "views");
 app.use(express.static(path.join(__dirname, "public")));
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(session({
+  secret: 'titanic gelanious layer',
+  resave: false,
+  saveUninitialized: false,
+  store: store,
+  cookie: { maxAge: 600000 }
+}))
 
 app.use('/', require("./route/shop"))
 

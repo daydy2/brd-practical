@@ -5,12 +5,14 @@ const {
   getSignup,
   getLogin,
   postRole,
+  postSignup,
 } = require("../controller/shop");
 
 router.get("/", getShop);
-router.route("/login").get(getLogin);
+router.get("/login", getLogin);
+// router.post("/login", getLogin);
 router.route("/signup").get(getSignup);
 router.post("/roles", postRole);
-// router.route("/signup").post(postSignUp)
+router.post("/signup", postSignup);
 
 module.exports = router;

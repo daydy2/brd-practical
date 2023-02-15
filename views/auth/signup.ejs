@@ -24,13 +24,21 @@
                 
             <% } else { %>
                 <form method="POST" class="addBook searchForm" action="/signup">
-                    <label for="email">Email</label>
-                    <input type="text" id="email" name="email">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" name="password">
-                    <label for="confirmPassword">Confirm Password</label>
-                    <input type="password" id="confirmPassword" name="confirmPassword">
-                    <input type="hidden" name="role"  value="<%= role %>">
+                    <div class="input__div">
+                        <label for="email">Email</label>
+                        <input type="text" id="email" name="email">
+                    </div>
+                    
+                    <div class="input__div">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password">   
+                    </div>
+                    
+                    <div class="input__div">
+                        <label for="confirmPassword">Confirm Password</label>
+                        <input type="password" id="confirmPassword" name="confirmPassword"> 
+                        <input type="hidden" name="role"  value="<%= role %>">  
+                    </div> 
                     <button class="btn" type="submit">Sign up</button>
                 </form
             <% } %> 
