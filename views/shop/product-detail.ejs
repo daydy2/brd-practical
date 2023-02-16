@@ -16,9 +16,16 @@
                 <input type="hidden" value="<%= product.userId %>" name="userId">
                 <div class="card__actions">
                     <a href="/order/<%= product._id %>" class="btn">Add to Cart</a>
-                    <a href="/edit-product/<%= product._id %>" class="btn">Edit</a>
-                    <a href="/delete-product/<%= product._id %>" class="btn">Delete</a>
                     
+                    <% if (user.role === 'admin' || user.role === 'vendor' ) { %>
+                        <a href="/edit-product/<%= product._id %>" class="btn">Edit</a>
+                    <% } %>
+                    
+
+                    <% if (user.role === 'admin') { %>
+                        <a href="/delete-product/<%= product._id %>" class="btn">Delete</a>
+                    <% } %>
+                                        
                 </div>
                 
         

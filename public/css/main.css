@@ -47,9 +47,11 @@ nav {
 
 
 .centered {
-    padding: 1rem;
+    padding: 2rem;
     margin: 3rem auto;
     width: 70rem;
+    border-radius: .9rem;
+    border: .1rem solid aquamarine;
 }
 
 .centered h1 {

@@ -7,12 +7,13 @@ const bcrypt = require("bcryptjs");
 require("dotenv").config();
 
 exports.getShop = (req, res, next) => {
-  console.log(req.user)
   Product.find()
     .then((product) => {
       res.render("shop/shop", {
         pageTitle: "Shop",
         prods: product,
+        isAuthenticated: req.session.isLoggedIn,
+        user: req.session.user ? req.session.user : false,
       });
     })
     .catch((err) => {
@@ -23,11 +24,13 @@ exports.getSignup = (req, res, next) => {
   res.render("auth/signup", {
     pageTitle: "Signup",
     role: false,
+    isAuthenticated: req.session.isLoggedIn,
+    user: req.session.user ? req.session.user : false,
   });
 };
 exports.postSignup = (req, res, next) => {
   const { email, password, confirmPassword, role } = req.body;
-
+  console.log(role);
   User.find({ email: email })
     .then((user) => {
       if (!user) {
@@ -65,16 +68,18 @@ exports.postSignup = (req, res, next) => {
 };
 exports.postRole = (req, res, next) => {
   const role = req.body.roles;
-  // console.log(req.body.roles);
 
   res.render("auth/signup", {
     pageTitle: "Signup",
     role: role ? role : false,
+    isAuthenticated: req.session.isLoggedIn,
   });
 };
 exports.getLogin = (req, res, next) => {
   res.render("auth/login", {
     pageTitle: "Login",
+    isAuthenticated: req.session.isLoggedIn,
+    user: req.session.user ? req.session.user : false,
   });
 };
 exports.postLogin = (req, res, next) => {
@@ -102,7 +107,7 @@ exports.postLogin = (req, res, next) => {
               expiresIn: "1d",
             }
           );
-          user.accessToken = accessToken
+          user.accessToken = accessToken;
           return req.session.save((err) => {
             console.log(err);
             res.redirect("/");
@@ -118,22 +123,49 @@ exports.postLogin = (req, res, next) => {
 };
 exports.getProduct = (req, res, next) => {
   const prodId = req.params.prodId;
-  Product.findById(prodId).then(product => {
-    if(!product){
-      return res.redirect('/');
-    }
-  //  console.log(product)
-    res.render('shop/product-detail',{
-      pageTitle: 'Product Detail',
-      product: product 
+  Product.findById(prodId)
+    .then((product) => {
+      if (!product) {
+        return res.redirect("/");
+      }
+      //  console.log(product)
+      res.render("shop/product-detail", {
+        pageTitle: "Product Detail",
+        product: product,
+        isAuthenticated: req.session.isLoggedIn,
+        user: req.session.user ? req.session.user : false,
+      });
     })
-  }).catch(err => {
-    console.log(err)
-  })
-}
+    .catch((err) => {
+      console.log(err);
+    });
+};
 exports.postLogout = (req, res, next) => {
+  if (!req.session) {
+    return res.redirect("/login");
+  }
   req.session.destroy((err) => {
     console.log(err);
     res.redirect("/");
   });
-}
+};
+exports.getAddProduct = (req, res, next) => {
+  res.render("edit/add-product", {
+    pageTitle: "Add Product",
+    isAuthenticated: req.session.isLoggedIn,
+    user: req.session.user ? req.session.user : false,
+  });
+};
+exports.postAddProductPage = (req, res, next) => {
+  const { title, price, imgUrl, description, userId } = req.body;
+
+  const newProduct = new Product({
+    title: title.toLowerCase(),
+    price: price.toLowerCase(),
+    imgUrl: imgUrl.toLowerCase(),
+    description: description.toLowerCase(),
+    userId: userId,
+  });
+  newProduct.save();
+  return res.redirect("/");
+};

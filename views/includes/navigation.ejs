@@ -3,43 +3,53 @@
     <li class="nav--listItem">
       <a href="/">Shop</a>
     </li>
-    <li class="nav--listItem">
-      <a href="/product-detail">Product </a>
-    </li>
-    <li class="nav--listItem">
-      <a href="/cart">Cart </a>
-    </li>
+    <% if (isAuthenticated) { %>
+      <li class="nav--listItem">
+        <a href="/cart">Cart </a>
+      </li>
+  
+      <li class="nav--listItem">
+        <a href="/orders">Orders</a>
+      </li>
+    <% } %>
+    
+    <% if (user.role === 'admin' || user.role === 'vendor' ) { %>
+      <li class="nav--listItem">
+        <a href="/add-product">Add Item</a>
+      </li>
+    <% } %>
+    
 
-    <li class="nav--listItem">
-      <a href="/orders">Orders</a>
-    </li>
-
-    <li class="nav--listItem">
-      <a href="/add-products">Add Item</a>
-    </li>
-
-    <li class="nav--listItem">
-      <a href="/user">Users</a>
-    </li>
-    <li class="nav--listItem">
-      <a href="/vendor">Vendors</a>
-    </li>
+    <% if (user.role === 'admin') { %>
+      <li class="nav--listItem">
+        <a href="/user">Users</a>
+      </li>
+      <li class="nav--listItem">
+        <a href="/vendor">Vendors</a>
+      </li>
+    <% } %>
+    
 
     <li class="nav--listItem spacer"></li>
 
-    <li class="nav--listItem">
-      <a href="/login">Login</a>
-    </li>
-    <li class="nav--listItem">
-      <a href="/signup">Signup</a>
-    </li>
+    <% if (!isAuthenticated) { %>
 
-    <li class="nav--listItem">
-      <form action="/logout" method="post">
-        <button type="submit" class="btnlog">Logout</button>
-      </form>
-    </li>
+      <li class="nav--listItem">
+        <a href="/login">Login</a>
+      </li>
 
-    
+      <li class="nav--listItem">
+        <a href="/signup">Signup</a>
+      </li>
+
+    <% } else { %>
+
+      <li class="nav--listItem">
+        <form action="/logout" method="post">
+          <button type="submit" class="btnlog">Logout</button>
+        </form>
+      </li>
+
+    <% } %>
   </ul>
 </nav>
