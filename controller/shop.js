@@ -30,7 +30,7 @@ exports.getSignup = (req, res, next) => {
 };
 exports.postSignup = (req, res, next) => {
   const { email, password, confirmPassword, role } = req.body;
- 
+
   User.find({ email: email })
     .then((user) => {
       if (!user) {
@@ -155,6 +155,8 @@ exports.getAddProduct = (req, res, next) => {
     pageTitle: "Add Product",
     isAuthenticated: req.session.isLoggedIn,
     user: req.session.user ? req.session.user : false,
+    editMode: false,
+    product: false
   });
 };
 exports.postAddProductPage = (req, res, next) => {
@@ -169,4 +171,25 @@ exports.postAddProductPage = (req, res, next) => {
   });
   newProduct.save();
   return res.redirect("/");
+};
+exports.getEditPage = (req, res, next) => {
+  const productId = req.params.productId;
+  
+  Product.findById(productId)
+    .then(product => {
+      if(!product){
+        return res.redirect(`/products/${productId}`)
+      }
+      return res.render('edit/add-product',{
+        pageTitle: 'Edit Product',
+        isAuthenticated: req.session.isLoggedIn,
+        user: req.session.user ? req.session.user : false,
+        product: product,
+        editMode: true
+
+      })
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 };
