@@ -30,7 +30,7 @@ exports.getSignup = (req, res, next) => {
 };
 exports.postSignup = (req, res, next) => {
   const { email, password, confirmPassword, role } = req.body;
-  console.log(role);
+ 
   User.find({ email: email })
     .then((user) => {
       if (!user) {
@@ -73,6 +73,7 @@ exports.postRole = (req, res, next) => {
     pageTitle: "Signup",
     role: role ? role : false,
     isAuthenticated: req.session.isLoggedIn,
+    user: req.session.user ? req.session.user : false,
   });
 };
 exports.getLogin = (req, res, next) => {

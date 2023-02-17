@@ -13,6 +13,7 @@ const {
   postAddProductPage,
 } = require("../controller/shop");
 const { authCheck } = require("../middleware/authCheck");
+const { getVendor } = require('../controller/admin')
 
 router.get("/", getShop);
 router.get("/login", getLogin);
@@ -29,5 +30,6 @@ router.post("/logout", postLogout);
 router.get("/add-product", authCheck(["vendor", "admin"]), getAddProduct);
 
 router.post("/add-product", authCheck(["vendor", "admin"]), postAddProductPage);
+router.get('/vendor', getVendor)
 
 module.exports = router;
