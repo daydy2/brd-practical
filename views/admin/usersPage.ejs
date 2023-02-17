@@ -4,20 +4,22 @@
     <body>
         <%- include('../includes/navigation.ejs') %>
         <main class="user__main">
-            <p><%= pageTitle %></p>
-            <article>
-                 <% if (vendor.length > 0) { %>
-                    <div class="user__div">
-                        <p class="user__email">Email: <%= user.email %></p>
-                        <div class="card__actions">
-                            <a href="/delete-user/<%= user._id %>" class="btn">Add to Cart</a>
+            <h1><%= pageTitle %></h1>
+            <% if (vendor.length > 0) { %>
+                <article>
+                    <% for (let user of vendor) { %>
+                        <div class="user__div">
+                            <p class="user__email">Email: <%= user.email %></p>
+                            <div class="card__actions">
+                                <a href="/delete-user/<%= user._id %>" class="delete-btn btn"> Delete <%= pageTitle %></a>
+                            </div>
                         </div>
-                    </div>
-                
-            <% } else {%>
-                <p>No Vendor registered!</p>
+                    <% } %>
+                </article>
+            <% } else { %>
+            <h2>No Vendor found!</h2>
             <% } %>
-            </article>
+           
            
         </main>
         <%- include('../includes/end.ejs') %>

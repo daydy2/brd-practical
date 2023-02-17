@@ -1,3 +1,11 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 html {
     font-size: 62.5%;
 }
@@ -76,15 +84,48 @@ nav {
     justify-content: space-between;
     align-items: flex-start;
 }
-.nav--listItem .btnlog{
+
+.nav--listItem .btnlog {
     all: unset;
     color: white;
 }
-.card__actions .btn, .nav--listItem button {
+
+.card__actions .btn,
+.nav--listItem button {
     font-size: 1.7rem;
     font-weight: bold;
     color: blueviolet;
     margin: 0 auto;
     border: 1px solid violet;
     padding: .7rem;
+}
+
+.card__actions .delete-btn {
+    border-color: red;
+    color: Red;
+    text-transform: capitalize;
+}
+
+.user__main {
+    margin: 1rem;
+    padding: 1rem;
+}
+.user__main h1{
+    text-transform: uppercase ;
+}
+.user__main h1,
+.user__main h2 {
+    text-align: center;
+    text-transform: capitalize;
+}
+
+.user__div {
+    box-shadow: 1px 0 2px gray;
+    padding: 1rem;
+    margin: .5rem 0;
+}
+
+.user__div p {
+    font-size: 2rem;
+
 }
