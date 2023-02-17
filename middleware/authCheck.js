@@ -5,7 +5,11 @@ exports.authCheck = (permission) => {
     if (permission.includes(role)) {
       next();
     } else {
-      res.status(401).redirect("/");
+      res.status(401).render('auth/unauth',{
+        pageTitle: "Error 401",
+        isAuthenticated: req.session.isLoggedIn,
+        user: req.session.user ? req.session.user : false,
+      })
     }
   };
 };

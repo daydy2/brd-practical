@@ -156,7 +156,7 @@ exports.getAddProduct = (req, res, next) => {
     isAuthenticated: req.session.isLoggedIn,
     user: req.session.user ? req.session.user : false,
     editMode: false,
-    product: false
+    product: false,
   });
 };
 exports.postAddProductPage = (req, res, next) => {
@@ -174,20 +174,50 @@ exports.postAddProductPage = (req, res, next) => {
 };
 exports.getEditPage = (req, res, next) => {
   const productId = req.params.productId;
-  
+
   Product.findById(productId)
-    .then(product => {
-      if(!product){
-        return res.redirect(`/products/${productId}`)
+    .then((product) => {
+      if (!product) {
+        return res.redirect(`/products/${productId}`);
       }
-      return res.render('edit/add-product',{
-        pageTitle: 'Edit Product',
+      return res.render("edit/add-product", {
+        pageTitle: "Edit Product",
         isAuthenticated: req.session.isLoggedIn,
         user: req.session.user ? req.session.user : false,
         product: product,
-        editMode: true
-
-      })
+        editMode: true,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+exports.postEdit = (req, res, next) => {
+  const {
+    title,
+    price,
+    imgUrl,
+    description,
+    userId,
+    productId,
+  } = req.body;
+  
+  
+  Product.findById(productId)
+    .then((product) => {
+      if (!product) {
+        return res.redirect("/");
+      }
+      // console.log(product)
+      product.title = title;
+      product.price = price;
+      product.imgUrl = imgUrl;
+      product.description = description;
+      product.userId = userId;
+      return product.save().then(() => {
+        console.log(`${title} is up to date`);
+        res.redirect("/");
+      });
     })
     .catch((err) => {
       console.log(err);

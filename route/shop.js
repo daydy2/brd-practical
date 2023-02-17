@@ -12,6 +12,7 @@ const {
   getAddProduct,
   postAddProductPage,
   getEditPage,
+  postEdit,
 } = require("../controller/shop");
 const { authCheck } = require("../middleware/authCheck");
 const { getVendor, getUsers, getDeleteUser, getDeleteProduct } = require("../controller/admin");
@@ -34,6 +35,7 @@ router.post("/add-product", authCheck(["vendor", "admin"]), postAddProductPage);
 router.get("/user/:role", authCheck(["admin"]), getUsers);
 router.get("/delete-user/:userId", authCheck(["admin"]), getDeleteUser);
 router.get("/delete-product/:productId", authCheck(["admin"]), getDeleteProduct);
-router.get('/edit-product/:productId', getEditPage)
+router.get('/edit-product/:productId', authCheck(['vendor', 'admin']) ,getEditPage)
+router.post('/edit-product', authCheck(['vendor', 'admin']), postEdit)
 
 module.exports = router;
