@@ -6,7 +6,14 @@
         <%- include('../includes/navigation.ejs') %>
         <main>
             <% if (prods.length > 0) { %>
+                <% if (!isAuthenticated) { %>
+                    <div class="isUnauth__div">
+                        <p class="isUnauth">Login to order from our website <a href="/login">Login</a></p>   
+                    </div>
+                    
+                <% } %>
                 <div class="grid">
+                    
                     <% for (let product of prods) { %>
                         <article class="card product-item">
                             <header class="card__header">
@@ -20,10 +27,11 @@
                                 <h2 class="product__price">$<%= product.price %></h2>
                                 <p class="product__description"><%= product.description %></p>
                             </div>
-                            
+                            <% if (isAuthenticated) { %>
                             <div class="card__actions">
                                 <a href="/products/<%= product._id %>" class="btn">Details</a>
                             </div>
+                            <% } %>
                         </article>
                     <% } %>
                 </div>

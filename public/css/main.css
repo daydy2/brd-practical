@@ -110,9 +110,11 @@ nav {
     margin: 1rem;
     padding: 1rem;
 }
-.user__main h1{
-    text-transform: uppercase ;
+
+.user__main h1 {
+    text-transform: uppercase;
 }
+
 .user__main h1,
 .user__main h2 {
     text-align: center;
@@ -129,9 +131,30 @@ nav {
     font-size: 2rem;
 
 }
-.user__unauth > p{
+
+.user__unauth>p {
     font-size: 2.3rem;
     font-weight: bold;
     text-align: center;
     margin-top: 4rem;
+}
+
+.isUnauth__div {
+    border: 1px solid red;
+    margin: 2rem auto;
+    padding: 1rem;
+    color: red;
+    width: 40%;
+}
+
+.isUnauth__div p {
+    font-size: 2rem;
+    text-align: center;
+}
+.isUnauth a{
+    all: unset;
+}
+.isUnauth a:hover{
+    cursor: pointer;
+    color: cyan;
 }
