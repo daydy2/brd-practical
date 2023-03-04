@@ -3,9 +3,10 @@ const Product = require("../model/product");
 const Order = require("../model/order");
 
 exports.getShop = (req, res, next) => {
+  
   Product.find()
     .then((product) => {
-      res.render("shop/shop", {
+      res.sendStatus(200).render("shop/shop", {
         pageTitle: "Shop",
         prods: product,
         isAuthenticated: req.session.isLoggedIn,
