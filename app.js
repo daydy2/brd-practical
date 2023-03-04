@@ -44,10 +44,6 @@ app.use((req, res, next) => {
     });
 });
 
-// app.use((req, res, next) => {
-//   res.locals.isAuthenticated = req.session.isLoggedIn;
-// });
-
 app.use("/", require("./route/shop"));
 
 app.use(errorHandler);
