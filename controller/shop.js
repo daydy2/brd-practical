@@ -6,7 +6,7 @@ exports.getShop = (req, res, next) => {
   
   Product.find()
     .then((product) => {
-      res.status(200).render("../views/shop/shop.ejs", {
+      res.status(200).render("shop/shop", {
         pageTitle: "Shop",
         prods: product,
         isAuthenticated: req.session.isLoggedIn,

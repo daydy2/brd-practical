@@ -16,6 +16,7 @@ const store = new MongoDBStore({
 
 app.set("view engine", "ejs");
 app.set("views", "views");
+app.set("views", path.join(__dirname, "views"));
 app.use(express.static(path.join(__dirname, "public")));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(
@@ -40,7 +41,7 @@ app.use((req, res, next) => {
       next();
     })
     .catch((err) => {
-      console.log(err)
+      console.log(err);
     });
 });
 
@@ -57,4 +58,4 @@ mongoose.connect(
     app.listen(process.env.PORT);
   }
 );
-module.exports = app
+module.exports = app;
